@@ -1,0 +1,212 @@
+{
+  "model_name": "MailGuard Spam Classifier",
+  "algorithm": "LightGBM",
+  "algorithm_key": "lightgbm",
+  "version": "1.0.0",
+  "trained_at": "2026-11-13T10:55:44+00:00",
+  "hyperparameters": {
+    "num_leaves": 31
+  },
+  "calibration": "none (native probabilities)",
+  "decision_threshold": 0.46,
+  "threshold_objective": "maximize F0.5 on validation",
+  "dataset": {
+    "name": "Apache SpamAssassin Public Mail Corpus",
+    "url": "https://spamassassin.apache.org/old/publiccorpus/",
+    "archives": [
+      "20030228_easy_ham.tar.bz2",
+      "20030228_easy_ham_2.tar.bz2",
+      "20030228_hard_ham.tar.bz2",
+      "20030228_spam.tar.bz2",
+      "20050311_spam_2.tar.bz2"
+    ],
+    "license_note": "No formal open-source license. Per the corpus readme, messages were posted to public fora or sent with knowledge they may be made public, and copyright of message text remains with the original senders. The raw corpus is downloaded at training time and is not redistributed here.",
+    "attribution": "SpamAssassin public corpus, curated by Justin Mason / Apache SpamAssassin project.",
+    "archive_sha256": {
+      "20030228_easy_ham.tar.bz2": "2b7b65904bcfcc31d2b5f51946f2d261370b257402cbbd62930b46ab83367438",
+      "20030228_easy_ham_2.tar.bz2": "b4bd3dc5ae5b40f38e99a0e41ad7d16b428b56e818e3a6ffa07330d62004dd38",
+      "20030228_hard_ham.tar.bz2": "ce2ce67880643dbde65ea7f85bffbfe4417349c4bd80b6b0de56262ae6b0a9c9",
+      "20030228_spam.tar.bz2": "c08debc32413804949a866be45ef78195cec2cbafd1da744ed76cdb860589743",
+      "20050311_spam_2.tar.bz2": "44280a0e28bf7645b2279e8e42659271ad82c6f40bf8d364dbda7f1df344a765"
+    },
+    "splits": {
+      "train": {
+        "n": 4188,
+        "n_spam": 1265,
+        "n_ham": 2923,
+        "spam_ratio": 0.3020534861509074,
+        "by_subset": {
+          "easy_ham": 1756,
+          "easy_ham_2": 984,
+          "hard_ham": 183,
+          "spam": 318,
+          "spam_2": 947
+        }
+      },
+      "validation": {
+        "n": 838,
+        "n_spam": 253,
+        "n_ham": 585,
+        "spam_ratio": 0.301909307875895,
+        "by_subset": {
+          "easy_ham": 357,
+          "easy_ham_2": 198,
+          "hard_ham": 30,
+          "spam": 77,
+          "spam_2": 176
+        }
+      },
+      "test": {
+        "n": 838,
+        "n_spam": 253,
+        "n_ham": 585,
+        "spam_ratio": 0.301909307875895,
+        "by_subset": {
+          "easy_ham": 352,
+          "easy_ham_2": 206,
+          "hard_ham": 27,
+          "spam": 80,
+          "spam_2": 173
+        }
+      }
+    },
+    "deduplication": {
+      "rows_before": 6046,
+      "conflicting_label_keys": 0,
+      "conflicting_label_rows_dropped": 0,
+      "exact_duplicates_dropped": 182,
+      "rows_after": 5864
+    }
+  },
+  "features": {
+    "text": "word TF-IDF (1-2 grams) + char_wb TF-IDF (3-5 grams) on normalized subject+body",
+    "structured": [
+      "subject_length",
+      "subject_upper_ratio",
+      "subject_exclamations",
+      "subject_is_reply",
+      "body_length_log",
+      "body_upper_ratio",
+      "body_exclamations_per_1k",
+      "body_digit_ratio",
+      "currency_symbols",
+      "spam_phrase_count",
+      "url_count",
+      "unique_url_domains",
+      "ip_url_count",
+      "shortener_url_count",
+      "link_text_mismatch",
+      "has_html",
+      "html_only",
+      "html_image_count",
+      "html_form_count",
+      "html_script_count",
+      "attachment_count",
+      "reply_to_differs",
+      "from_name_domain_mismatch",
+      "missing_message_id",
+      "missing_date"
+    ],
+    "n_features": 20025,
+    "constant_in_training": [
+      "missing_date"
+    ],
+    "prevalence_in_training": {
+      "subject_length": 0.997134670487106,
+      "subject_upper_ratio": 0.9570200573065902,
+      "subject_exclamations": 0.10816618911174786,
+      "subject_is_reply": 0.3851480420248329,
+      "body_length_log": 0.9954632282712512,
+      "body_upper_ratio": 0.9928366762177651,
+      "body_exclamations_per_1k": 0.45558739255014324,
+      "body_digit_ratio": 0.8923113658070678,
+      "currency_symbols": 0.20534861509073543,
+      "spam_phrase_count": 0.3278414517669532,
+      "url_count": 0.856494746895893,
+      "unique_url_domains": 0.856494746895893,
+      "ip_url_count": 0.04656160458452722,
+      "shortener_url_count": 0.0009551098376313276,
+      "link_text_mismatch": 0.0069245463228271254,
+      "has_html": 0.19508118433619867,
+      "html_only": 0.15902578796561603,
+      "html_image_count": 0.10506208213944604,
+      "html_form_count": 0.042263610315186245,
+      "html_script_count": 0.014565425023877745,
+      "attachment_count": 0.024355300859598854,
+      "reply_to_differs": 0.17454632282712512,
+      "from_name_domain_mismatch": 0.0009551098376313276,
+      "missing_message_id": 0.0002387774594078319,
+      "missing_date": 0.0
+    }
+  },
+  "validation_metrics": {
+    "threshold": 0.46,
+    "n_samples": 838,
+    "n_spam": 253,
+    "n_ham": 585,
+    "accuracy": 0.9940334128878282,
+    "precision": 0.9881889763779528,
+    "recall": 0.9920948616600791,
+    "f1": 0.9901380670611439,
+    "f0_5": 0.9889676910953507,
+    "specificity": 0.9948717948717949,
+    "false_positive_rate": 0.005128205128205128,
+    "roc_auc": 0.9986622073578595,
+    "pr_auc": 0.997280320712777,
+    "brier": 0.007288802248154268,
+    "confusion_matrix": {
+      "tn": 582,
+      "fp": 3,
+      "fn": 2,
+      "tp": 251
+    }
+  },
+  "test_metrics": {
+    "threshold": 0.46,
+    "n_samples": 838,
+    "n_spam": 253,
+    "n_ham": 585,
+    "accuracy": 0.9880668257756563,
+    "precision": 0.9879518072289156,
+    "recall": 0.9723320158102767,
+    "f1": 0.9800796812749004,
+    "f0_5": 0.9847878302642114,
+    "specificity": 0.9948717948717949,
+    "false_positive_rate": 0.005128205128205128,
+    "roc_auc": 0.9989392250261815,
+    "pr_auc": 0.9978104987486015,
+    "brier": 0.011009555065347326,
+    "confusion_matrix": {
+      "tn": 582,
+      "fp": 3,
+      "fn": 7,
+      "tp": 246
+    }
+  },
+  "artifact": {
+    "path": "mailguard_model.joblib",
+    "sha256": "b1e5435d1755e385c96c1109a5a95d5a4ccaa90ad7fd8f27286a49ec56f31600",
+    "size_bytes": 1174440
+  },
+  "environment": {
+    "python": "3.12.0",
+    "scikit-learn": "1.9.1",
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0"
+  },
+  "training_seconds": 343.4,
+  "intended_use": "Educational demonstration of an end-to-end spam classification system.",
+  "limitations": [
+    "Training data is 2002-2005 email (SpamAssassin corpus). Modern spam/phishing styles, languages and obfuscation techniques are under-represented, so real-world performance will be lower than test metrics.",
+    "Ham comes largely from technical mailing lists and newsletters received by a few people; business, personal and non-English mail is under-represented, which raises false-positive risk on such mail.",
+    "Test metrics come from the same corpus (random group-aware split), not from a later time period or a different organisation; they are optimistic estimates of deployment performance.",
+    "Header text is intentionally excluded from TF-IDF to avoid learning collection artefacts; only a few header properties are used. Pasting a body without headers disables those header signals.",
+    "No sender reputation, authentication (SPF/DKIM/DMARC), URL reputation or attachment scanning is performed.",
+    "Explanations are per-feature contributions in score space (log-odds/margin); they describe the model, not ground truth, and character n-gram signals can be hard to interpret.",
+    "Educational project: not a substitute for a production mail-security gateway.",
+    "These structured features never vary in the training data, so the model cannot use them even though they are extracted and displayed: missing_date."
+  ]
+}

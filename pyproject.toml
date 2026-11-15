@@ -1,0 +1,15 @@
+[project]
+name = "mailguard-ml"
+version = "1.0.0"
+description = "Email spam detection with explainable ML, a Streamlit UI and in-app monitoring"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+filterwarnings = [
+    "ignore::DeprecationWarning:shap.*",
+    "ignore:LightGBM binary classifier with TreeExplainer:UserWarning",
+]

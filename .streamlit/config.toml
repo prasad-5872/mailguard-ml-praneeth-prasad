@@ -1,0 +1,17 @@
+
+[server]
+maxUploadSize = 2
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "viewer"
+
+[theme]
+base = "dark"
+primaryColor = "#4F46E5"
+backgroundColor = "#04040D"
+secondaryBackgroundColor = "#0D0B24"
+textColor = "#F8FAFC"
+font = "sans serif"

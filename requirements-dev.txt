@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest==9.2.0
+# Optional: used only by a test that cross-checks LightGBM's built-in TreeSHAP values.
+shap==0.54.1

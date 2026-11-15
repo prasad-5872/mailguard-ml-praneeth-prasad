@@ -1,0 +1,29 @@
+Return-Path: <priya.raman@example.org>
+Received: from mail.example.org (mail.example.org [192.0.2.10])
+	by mx.example.com with ESMTPS id 4F2A1B; Tue, 10 Sep 2024 09:14:02 +0000
+From: Priya Raman <priya.raman@example.org>
+To: Data Team <data-team@example.org>
+Subject: Notes from Monday's pipeline review
+Date: Tue, 10 Sep 2024 09:13:55 +0000
+Message-ID: <20240910091355.5521@example.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hi all,
+
+Thanks for joining the pipeline review yesterday. Quick summary:
+
+- The nightly ingestion job now finishes in about 40 minutes after the
+  partitioning change. Arjun will keep an eye on it for the rest of the week.
+- We agreed to move the schema validation step before deduplication so bad
+  rows are rejected earlier.
+- Open question: should we keep the raw CSV exports for 30 or 90 days?
+  Please add your thoughts to the design doc before Thursday.
+
+The slides are in the shared drive under "pipeline-review/2024-09".
+
+Next review is on the 23rd. Let me know if that clashes with anything.
+
+Cheers,
+Priya

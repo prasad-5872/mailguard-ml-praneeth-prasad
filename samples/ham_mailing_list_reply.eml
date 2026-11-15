@@ -1,0 +1,23 @@
+From: Tomasz Nowak <tomasz@example.net>
+To: dev-list@lists.example.org
+Subject: Re: [dev] Build fails on ARM after compiler upgrade
+Date: Thu, 05 Sep 2024 17:42:10 +0200
+Message-ID: <a81f2c90-1d2e@example.net>
+In-Reply-To: <77ab01@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+
+On Thu, 5 Sep 2024, Elena wrote:
+> After upgrading the toolchain the ARM build stops with an "undefined
+> reference" error in the linker step. x86 is fine.
+
+I hit the same thing last week. The new compiler enables link-time
+optimisation by default, and our ARM linker script drops one of the
+sections it needs. Passing -fno-lto in the ARM toolchain file fixes it
+for now.
+
+I opened an issue with a minimal reproduction and attached the full
+build log. A proper fix is probably to update the linker script, but I
+haven't had time to test that on real hardware yet.
+
+Tomasz
